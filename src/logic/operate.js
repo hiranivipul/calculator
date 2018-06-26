@@ -1,8 +1,14 @@
 import Big from "big.js";
 
 export default function operate(numberOne, numberTwo, operation) {
-  const one = Big(numberOne || "0");
-  const two = Big(numberTwo || "0");
+  let one = Big(numberOne || "0");
+  let two = Big(numberTwo || "0");
+  if (operation === "÷" && (numberOne === 0 || numberOne === null)) {
+    one = Big(1);
+  }
+  if (operation === "÷" && (numberTwo === 0 || numberTwo === null)) {
+    two = Big(1);
+  }
   if (operation === "+") {
     return one.plus(two).toString();
   }
